@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зина | Давай знакомиться</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b9d;
+            --secondary-color: #c44569;
+            --dark-color: #2d2d2d;
+            --light-color: #fff5f7;
+            --accent-color: #ffa07a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4ec 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '💕';
+            position: absolute;
+            font-size: 400px;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            height: 650px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(196, 69, 105, 0.2);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 4px solid var(--primary-color);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .hero-text .age {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: var(--light-color);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .about-card p, .about-card li {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .about-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .about-card li::before {
+            content: '💖';
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        /* Personality Section */
+        .personality {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4ec 100%);
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .trait-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .trait-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+        }
+
+        .trait-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .trait-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .trait-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* What I'm Looking For */
+        .looking-for {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .ideal-match {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4ec 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .ideal-match h3 {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .match-criteria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .criteria-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .criteria-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .criteria-text h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .criteria-text p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 5%;
+            background: var(--light-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            height: 400px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(196, 69, 105, 0.9), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title h2 {
+            color: white;
+        }
+
+        .contact .section-title h2::after {
+            background: white;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-text {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .contact-method {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 2rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-method:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-method .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-method .label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-method .value {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .heart-animation {
+            font-size: 4rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin: 2rem 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: #999;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                height: 450px;
+                max-width: 350px;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .match-criteria {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text, .hero-image {
+            animation: fadeInUp 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">ЗИНА 💕</a>
+        <ul class="nav-links">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#personality">Характер</a></li>
+            <li><a href="#looking-for">Идеал</a></li>
+            <li><a href="#gallery">Фото</a></li>
+            <li><a href="#contact">Написать</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-image">
+                <img src="[IMAGE_URL_FROM_GENERATION]" alt="Зина">
+            </div>
+            <div class="hero-text">
+                <div class="tagline">Ищу серьёзные отношения 💑</div>
+                <h1>Привет, я Зина!</h1>
+                <div class="age">25 лет • Москва • Свободна</div>
+                <p>Романтичная, искренняя и целеустремлённая девушка. Верю в настоящую любовь и ищу человека, с которым смогу разделить свои мечты, увлечения и жизненный путь. Люблю путешествия, уютные вечера и глубокие разговоры.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">❤️ Написать мне</a>
+                    <a href="#about" class="btn btn-secondary">Узнать больше</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Обо мне</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-card">
+                    <h3>👤 Основная информация</h3>
+                    <ul>
+                        <li>Возраст: 25 лет</li>
+                        <li>Город: Москва</li>
+                        <li>Рост: 168 см</li>
+                        <li>Образование: Высшее (маркетинг)</li>
+                        <li>Работа: Digital-маркетолог</li>
+                        <li>Знак зодиака: Телец</li>
+                        <li>Дети: Нет, но хочу в будущем</li>
+                        <li>Вредные привычки: Не курю</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3>🎯 Мои интересы</h3>
+                    <ul>
+                        <li>Путешествия и новые культуры</li>
+                        <li>Йога и здоровый образ жизни</li>
+                        <li>Чтение психологической литературы</li>
+                        <li>Кулинария и эксперименты на кухне</li>
+                        <li>Фотография и искусство</li>
+                        <li>Прогулки на природе</li>
+                        <li>Кино и хорошие сериалы</li>
+                        <li>Живое общение и настольные игры</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3>💫 Мои ценности</h3>
+                    <ul>
+                        <li>Честность и открытость в отношениях</li>
+                        <li>Взаимное уважение и поддержка</li>
+                        <li>Семейные традиции и уют</li>
+                        <li>Саморазвитие и рост</li>
+                        <li>Забота о близких</li>
+                        <li>Баланс между работой и личной жизнью</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3>🌟 Чем занимаюсь</h3>
+                    <p>Работаю в digital-сфере, люблю свою профессию за креативность и возможность постоянно учиться новому.</p>
+                    <p>В свободное время занимаюсь йогой, изучаю новые языки (сейчас учу итальянский), люблю готовить и экспериментировать с рецептами.</p>
+                    <p>Мечтаю посетить Италию и Японию, обожаю спонтанные поездки на выходные.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personality Section -->
+    <section class="personality" id="personality">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мой характер</h2>
+            </div>
+            <div class="traits-grid">
+                <div class="trait-card">
+                    <div class="trait-icon">🌸</div>
+                    <h3>Нежная и заботливая</h3>
+                    <p>Умею слушать и поддерживать, создаю уют вокруг себя</p>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-icon">💪</div>
+                    <h3>Целеустремлённая</h3>
+                    <p>Знаю, чего хочу, и иду к своим целям</p>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-icon">😄</div>
+                    <h3>Позитивная</h3>
+                    <p>Люблю смеяться и находить радость в мелочах</p>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-icon">🧠</div>
+                    <h3>Интеллектуальная</h3>
+                    <p>Люблю умные разговоры и саморазвитие</p>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-icon">💝</div>
+                    <h3>Романтичная</h3>
+                    <p>Верю в любовь и создаю особенные моменты</p>
+                </div>
+                <div class="trait-card">
+                    <div class="trait-icon">🤗</div>
+                    <h3>Открытая</h3>
+                    <p>Искренна в общении, не люблю игры и недосказанность</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Looking For Section -->
+    <section class="looking-for" id="looking-for">
+        <div class="container">
+            <div class="section-title">
+                <h2>Кого я ищу</h2>
+            </div>
+            <div class="ideal-match">
+                <h3>Мой идеальный партнёр 💑</h3>
+                <div class="match-criteria">
+                    <div class="criteria-item">
+                        <div class="criteria-icon">🎯</div>
+                        <div class="criteria-text">
+                            <h4>Целеустремлённый</h4>
+                            <p>Имеет цели и стремится к их достижению</p>
+                        </div>
+                    </div>
+                    <div class="criteria-item">
+                        <div class="criteria-icon">💬</div>
+                        <div class="criteria-text">
+                            <h4>Коммуникабельный</h4>
+                            <p>Умеет говорить о чувствах и решать конфликты</p>
+                        </div>
+                    </div>
+                    <div class="criteria-item">
+                        <div class="criteria-icon">🤝</div>
+                        <div class="criteria-text">
+                            <h4>Надёжный</h4>
+                            <p>На него можно положиться в любой ситуации</p>
+                        </div>
+                    </div>
+                    <div class="criteria-item">
+                        <div class="criteria-icon">❤️</div>
+                        <div class="criteria-text">
+                            <h4>Заботливый</h4>
+                            <p>Внимательный к деталям и чувствам партнёра</p>
+                        </div>
+                    </div>
+                    <div class="criteria-item">
+                        <div class="criteria-icon">🌍</div>
+                        <div class="criteria-text">
+                            <h4>С чувством юмора</h4>
+                            <p>Умеет рассмешить и не воспринимает всё слишком серьёзно</p>
+                        </div>
+                    </div>
+                    <div class="criteria-item">
+                        <div class="criteria-icon">🏡</div>
+                        <div class="criteria-text">
+                            <h4>Семейный</h4>
+                            <p>Ценит семью и хочет серьёзных отношений</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мои фото</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="[IMAGE_URL_FROM_GENERATION]" alt="Зина фото 1">
+                    <div class="gallery-overlay">
+                        <h4>Портрет</h4>
+                        <p>Любимое фото</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&h=800&fit=crop" alt="Зина фото 2">
+                    <div class="gallery-overlay">
+                        <h4>Путешествия</h4>
+                        <p>Люблю исследовать новые места</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=600&h=800&fit=crop" alt="Зина фото 3">
+                    <div class="gallery-overlay">
+                        <h4>Хобби</h4>
+                        <p>Йога и спорт</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop" alt="Зина фото 4">
+                    <div class="gallery-overlay">
+                        <h4>Отдых</h4>
+                        <p>На природе</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=800&fit=crop" alt="Зина фото 5">
+                    <div class="gallery-overlay">
+                        <h4>Вечерний образ</h4>
+                        <p>Для особых случаев</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600&h=800&fit=crop" alt="Зина фото 6">
+                    <div class="gallery-overlay">
+                        <h4>Улыбка</h4>
+                        <p>Счастье в мелочах</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <div class="section-title">
+                <h2>Давай познакомимся!</h2>
+            </div>
+            <div class="heart-animation">💕</div>
+            <p class="contact-text">Если ты чувствуешь, что мы можем подойти друг другу — напиши! Буду рада пообщаться и узнать тебя получше. Не стесняйся, я не кусаюсь! 😊</p>
+            
+            <div class="contact-methods">
+                <a href="https://t.me/zina_dating" class="contact-method">
+                    <span class="icon">✈️</span>
+                    <div class="label">Telegram</div>
+                    <div class="value">@zina_dating</div>
+                </a>
+                
+                <a href="https://wa.me/79991234567" class="contact-method">
+                    <span class="icon">💬</span>
+                    <div class="label">WhatsApp</div>
+                    <div class="value">+7 (999) 123-45-67</div>
+                </a>
+                
+                <a href="mailto:zina.love@email.com" class="contact-method">
+                    <span class="icon">✉️</span>
+                    <div class="label">Email</div>
+                    <div class="value">zina.love@email.com</div>
+                </a>
+                
+                <a href="https://instagram.com/zina_love" class="contact-method">
+                    <span class="icon">📷</span>
+                    <div class="label">Instagram</div>
+                    <div class="value">@zina_love</div>
+                </a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 1.1rem; opacity: 0.9;">
+                💌 Пиши в любое время — всегда рада новым знакомствам!
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Зина | Создано с любовью в поисках счастья 💕</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Все фото реальные и актуальные</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>
